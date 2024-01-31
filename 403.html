@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width,initial-scale=0.29,maximum-scale=1">
+		<meta name="description" content="403">
+		<meta name="keywords" content="403">
+		<title>403 Forbidden</title>
+		<link rel="short icon" href="error/images/pic02.png">
+		<link href="./error/css/main.css" rel="stylesheet">
+	</head>
+
+<body>
+		<img src="error/images/pic03.png" alt="" width="150" height="150"/>
+		<blockquote>
+		  <h1 style="text-align: center;font-size: 50px;"><strong>403</strong></h1>
+		  <h1 style="text-align: center;font-size: 50px;">拒绝访问</h1>
+        </blockquote>
+		<svg width="0" height="0" style="position:fixed;">
+			<defs>
+				<linearGradient id="orange_yellow" x1="0%" y1="0%" x2="0%" y2="100%">
+					<!-- <title>橘-黄渐变字色</title> -->
+					<stop offset="5%" stop-color="#e05500" stop-opacity="1"></stop>
+					<stop offset="50%" stop-color="#ffa400" stop-opacity="1"></stop>
+					<stop offset="80%" stop-color="#ffe100" stop-opacity="1"></stop>
+				</linearGradient>
+				<filter id="sterefont">
+					<!-- <title>白边棕色立体字</title> -->
+					<feFlood flood-color="#fff" flood-opacity="0.8" result="white"></feFlood>
+					<feFlood flood-color="#70470b" flood-opacity="1" result="brown"></feFlood>
+					<feFlood flood-color="#000" flood-opacity="0.8" result="black"></feFlood>
+
+					<feMorphology in="SourceAlpha" operator="dilate" radius="3,1.5" result="dilate_31"></feMorphology>
+					<feGaussianBlur in="dilate_31" stdDeviation="2" result="blur_2"></feGaussianBlur>
+					<feOffset in="blur_2" dx="3" dy="0" result="x3y_1"></feOffset>
+					<feComposite in="black" in2="x3y_1" operator="in" result="shadow"></feComposite>
+
+					 <feConvolveMatrix divisor="1" order="4,4" 
+					 	kernelMatrix="1 0 0 0 
+					 				  0 1 0 0 
+					 				  0 0 1 0 
+					 				  0 0 0 1 " 
+					 	in="SourceAlpha" result="matrix_4"></feConvolveMatrix>
+					<feOffset in="matrix_4" dx="2" dy="-4" result="x2y_4"></feOffset>
+					<feComposite in="brown" in2="x2y_4" operator="in" result="stere_brown"></feComposite>
+
+					<feOffset in="SourceAlpha" dx="1" dy="-6" result="x1y_1"></feOffset>
+					<feComposite in="white" in2="x1y_1" operator="in" result="stroke_white"></feComposite>
+
+					<feOffset in="SourceGraphic" dx="0" dy="-5" result="source"></feOffset>
+
+					<feMerge result="merges">
+						<feMergeNode in="shadow"></feMergeNode>
+						<feMergeNode in="stere_brown"></feMergeNode>
+						<feMergeNode in="stroke_white"></feMergeNode>
+						<feMergeNode in="source"></feMergeNode>
+					</feMerge>
+				</filter>
+		  </defs>
+</svg>
+</body>
+</html>

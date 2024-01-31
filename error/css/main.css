@@ -1,0 +1,15 @@
+body {
+            background-image: url("../images/pic01.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+h1 {
+background: linear-gradient(to bottom, #e05500 5%, #ffa400 50%, #ffe100 80%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+filter: url(#sterefont);
+}
