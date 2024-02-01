@@ -10,6 +10,10 @@
         <meta name="keywords" content="SealX Home" />
         <link rel="stylesheet" type="text/css" href="./nav/css/FiraCode.css" />
         <link rel="stylesheet" type="text/css" href="./nav/css/SealX.css" />
+        <link rel="stylesheet" href="./layui/css/layui.css">
+        <script src="./js/jquery-3.6.0.min.js"></script>
+        <script src="./layui/layui.js"></script>
+        <script src="./js/template-web.js"></script>
         <link rel="icon" href="./nav/favicon.ico" />
         <meta http-equiv="refresh" content="0; url=./nav/nav.html">
         <title>Loading...</title>

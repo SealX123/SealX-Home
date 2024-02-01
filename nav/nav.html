@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -12,6 +12,8 @@
         <link rel="stylesheet" type="text/css" href="./css/FiraCode.css" />
         <link rel="stylesheet" type="text/css" href="./css/SealX.css" />
         <link rel="icon" href="./favicon.ico" />
+        <link rel="stylesheet" href="./layui/css/layui.css">
+        <script src="./js/jquery-3.6.0.min.js"></script>    
     </head>
 
     <body>
@@ -58,7 +60,7 @@
                     <div class="cmdText">
                         <span style="color: rgb(0, 190, 0)">root@SealX</span>
                         <span style="color: blue">~</span>
-                        <span style="color: rgb(39, 39, 39)">./tianqi.sh</span>
+                        <span style="color: rgb(39, 39, 39)">./Weather.sh</span>
                         <br />
                         <iframe
                             scrolling="no"
@@ -71,7 +73,7 @@
                         <br />
                         <span style="color: rgb(0, 190, 0)">root@SealX</span>
                         <span style="color: blue">~</span>
-                        <span style="color: rgb(39, 39, 39)">SealX /me.txt</span>
+                        <span style="color: rgb(39, 39, 39)">SealX/Me.txt</span>
                         <p>爱好计算机，会去自学自己感兴趣的一切东西</p>
                         <p>略懂H5，Python开发；爱好折腾去解决一切问题</p>
                         <p>同时我也很喜欢玩硬件，raspberry是我的最爱</p>
@@ -101,7 +103,7 @@
                     <div class="cmdText">
                         <span style="color: rgb(0, 190, 0)">root@SealX</span>
                         <span style="color: blue">~</span>
-                        <span style="color: rgb(39, 39, 39)">./links.sh</span>
+                        <span style="color: rgb(39, 39, 39)">./Links.sh</span>
                         <p>我的其他站点：</p>
                         <ul class="ul">
                             <li><a href="#">图片集</a></li>
@@ -111,9 +113,48 @@
 						</ul>
                         <span style="color: rgb(0, 190, 0)">root@SealX</span>
                         <span style="color: blue">~</span>
+                        <span style="color: rgb(39, 39, 39)">./TodayInHistory.sh</span>
+                        <div style="margin: 0 auto;display: block;">
+                        <div style="height: 245px; overflow: auto;">
+                            <ul class="layui-timeline" id="history-box">
+                            </ul>
+                            </div>
+                        </div>
                     </div>
 					</div>
             </div>
         </div>
+    <script src="./layui/layui.js"></script>
+    <!-- 引入template-web模版库文件 -->
+    <script src="./js/template-web.js"></script>
+    <!-- 模版内容 -->
+    <script type="text/html" id="history-tpl">
+        {{each info}}
+        <li class="layui-timeline-item">
+		<i class="layui-icon layui-icon-flag" style="font-size: 20px; color: #5FB878;"></i>
+            <div class="layui-timeline-content layui-text">
+                <h3 class="layui-timeline-title">{{$value.year}}年{{data.month}}月{{data.day}}日</h3>
+                <p>
+                    {{$value.title}}
+                </p>
+            </div>
+        </li>
+        {{/each}}
+    </script>
+    <script type="text/javascript">
+        var historyBox = document.getElementById("history-box");
+        $.ajax({
+            type: "get",
+            url: "https://query.asilu.com/today/list",
+            dataType: "jsonp",
+            success: function (data) {
+                var html = template("history-tpl", {
+                    info: data.data,
+                    data: data
+                });
+                historyBox.innerHTML = html;
+            }
+        });
+    </script>
     </body>
 </html>
