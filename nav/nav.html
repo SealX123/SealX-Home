@@ -121,8 +121,11 @@
                             </div>
                         </div>
                     </div>
-					</div>
+				</div>
             </div>
+        </div>
+        <div id="footer">
+          <h3 id="buttom"></h3>
         </div>
     <script src="./layui/layui.js"></script>
     <!-- 引入template-web模版库文件 -->
@@ -156,5 +159,13 @@
             }
         });
     </script>
+    <script>
+		// 获取当前年份
+     var currentYear = new Date().getFullYear();
+
+// 将年份+SEAL填入<P>元素中
+     var yearElement = document.getElementById("buttom");
+     yearElement.innerHTML = "© " + currentYear + " SealX";
+		</script>
     </body>
 </html>
