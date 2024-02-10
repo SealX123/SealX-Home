@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ubuntu</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="icons/Suru/Suru/scalable/places/start-here-symbolic.svg" type="image/x-icon">  
+        <link rel="stylesheet" href="css/main.css">
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="css/panel.css">
+        <script src="js/panel.js" ></script>
+        <link rel="stylesheet" href="css/Font.css">
+        <script src="js/window.js"></script>
+        <link rel="stylesheet" href="css/window.css">
+        <link rel="stylesheet" href="css/dock.css">
+        <script src="js/app-menu.js"></script>
+        <link rel="stylesheet" href="css/app-menu.css">
+        <link rel="stylesheet" href="css/desktop.css">
+        <link rel="stylesheet" href="css/brightness.css">
+        <script src="js/activities.js"></script>
+        <link rel="stylesheet" href="css/activities.css">
+        <script src="js/localStorage.js"></script>
+        <script src="js/workspace.js"></script>
+        <link rel="stylesheet" href="css/workspace.css">
+    </head>
+    <body oncontextmenu="return false;">
+        <img src="" draggable="false" class="wallpaper" />
+        <div class="panel">
+            <div class="panel-activities" onclick="showHideActivities();">Activities</div>
+            <div class="panel-active-app">
+                <img draggable="false" src="icons/null.svg" class="panel-active-app-icon"/>
+                <div class="panel-active-app-name"></div>
+            </div>
+            <div class="panel-notification" onclick="showNotificationAbout();"></div>
+            <div class="panel-status" onclick="showStatusAbout();">
+                <img class="panel-status-icon" draggable="false" src="icons/Suru/Suru/scalable/status/network-wireless-connected-symbolic.svg"/>
+                <img class="panel-status-icon" draggable="false" src="icons/Suru/Suru/scalable/status/audio-volume-high-symbolic.svg"/>
+                <img class="panel-status-icon" draggable="false" src="icons/Suru/Suru/scalable/status/battery-level-100-charging-symbolic.svg"/>
+            </div>
+            <iframe class="status-about" src="status.html" hidden></iframe>
+            <iframe class="notification-about" src="notification.html" hidden></iframe>
+        </div>
+        <div class="desktop" onclick="changePanelActiveAppIcon('icons/null.svg','');">
+            <div class="desktop-item" ondblclick="window_create_special(createRandomWindowID(),'apps/filemanager/index.html','Files','icons/Suru/Suru/48x48/apps/filemanager-app.png');">
+                <img draggable="false" class="item-icon" src="icons/Suru/Suru/48x48/places/user-home.png"/><br>
+                Home
+            </div>
+        </div>
+        <div class="dock-app-menu" onmousewheel="changeWorkspace();">
+            <img onclick="showHideAppMenu();" draggable="false" src="icons/Suru/Suru/scalable/categories/preferences-desktop-apps-symbolic.svg" class="dock-app-menu-icon"/>
+        </div>
+        <div class="dock">
+            <div id="dock"></div>
+            <div class="dock-app-container">
+                <img class="dock-app" onclick="window_create_special(createRandomWindowID(),'apps/filemanager/index.html?open=Trash','Files','icons/Suru/Suru/48x48/apps/filemanager-app.png');" draggable="false" src="icons/Suru/Suru/48x48/places/user-trash.png">
+            </div>
+        </div>
+        <div class="workspaces" hidden><div class="workspace-now"></div></div>
+        <div class="app-menu" style="visibility: hidden;">
+            <div class="menu-searchbox"><img src="icons/Suru/Suru/scalable/actions/search-symbolic.svg" draggable="false" /><input type="text" placeholder="Write to search" onfocus="this.parentNode.style.border='2px #f7b33f solid'; this.parentNode.style.transform='translate(-1px,-1px)';"  onfocusout="this.parentNode.style.border=''; this.parentNode.style.transform='';this.value='';"/></div>
+            <img onclick="showHideAppMenu();" class="app-menu-container-wallpaper" />
+            <div class="app-menu-container">
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/webbrowser/index.html','Firefox Web Browser','icons/Suru/Suru/48x48/apps/webbrowser-app.png','icons/Suru/Suru/scalable/apps/webbrowser-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/webbrowser-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/filemanager/index.html','Files','icons/Suru/Suru/48x48/apps/filemanager-app.png','icons/Suru/Suru/scalable/apps/filemanager-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/filemanager-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/imageviewer/index.html','Image Viewer','icons/Suru/Suru/48x48/apps/image-viewer-app.png','icons/Suru/Suru/scalable/apps/image-viewer-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/image-viewer-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/maps/index.html','Maps','icons/Suru/Suru/48x48/apps/maps-app.png','icons/Suru/Suru/scalable/apps/maps-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/maps-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/help/index.html','Help','icons/Suru/Suru/48x48/apps/help-app.png','icons/Suru/Suru/scalable/apps/help-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/help-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/settings/index.html','Settings','icons/Suru/Suru/48x48/apps/system-settings.png','icons/Suru/Suru/scalable/apps/system-settings-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/system-settings.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/terminal/index.html','Terminal','icons/Suru/Suru/48x48/apps/terminal-app.png','icons/Suru/Suru/scalable/apps/terminal-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/terminal-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create_special(createRandomWindowID(),'apps/weather/index.html','Weather','icons/Suru/Suru/48x48/apps/weather-app.png','icons/Suru/Suru/scalable/apps/weather-app-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/weather-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/libreoffice/writer/index.html','LibreOffice Writer','icons/Suru/Suru/48x48/apps/libreoffice-writer.png','icons/Suru/Suru/scalable/mimetypes/x-office-document-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/libreoffice-writer.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/libreoffice/calc/index.html','LibreOffice Calc','icons/Suru/Suru/48x48/apps/libreoffice-calc.png','icons/Suru/Suru/scalable/mimetypes/x-office-spreadsheet-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/libreoffice-calc.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://paint.js.org','Paint - WineHQ','https://paint.js.org/assets/icon.png');" draggable="false" src="https://paint.js.org/assets/icon.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/wine/notepad.html','Notepad - WineHQ','icons/Suru/Suru/48x48/apps/wine.png','icons/Suru/Suru/scalable/apps/wine-symbolic.svg',2);" draggable="false" src="icons/Suru/Suru/256x256/apps/wine.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://photopea.com','Photopea','icons/Suru/Suru/48x48/apps/photopea.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/photopea.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://player.zone.msn.com/?gamePath=msminesweeper&gameInfo=eyJleHRlcm5hbElkIjoibXNtaW5lc3dlZXBlciIsInBhdGgiOiJodHRwczovL2Nkbi56b25lLm1zbi5jb20vYXNzZXRzL2dhbWVzL21pY3Jvc29mdG1pbmVzd2VlcGVyLzIwMjAwODEyVDEzMTAwM18xLjMuMjJfbWlsZXN0b25lc18yMDIwX21pbGVzdG9uZV8yMDIwXzAwNV9zcHJpbnRfMDAxXzFlNDgxMTJfbXNuL2RlZmF1bHQuaHRtbCIsInBhdXNlZHVyaW5nYWQiOmZhbHNlLCJnYW1lVHlwZSI6ImZpcnN0UGFydHkiLCJnYW1lVmVyc2lvbiI6IjEuMC4xMCIsImdhbWVEaXNwbGF5TmFtZSI6Ik1pY3Jvc29mdCBNaW5lc3dlZXBlciIsImhvc3RpbmdFbnZpcm9ubWVudCI6InpvbmUifQ==&mcgId=580EED22F0AC4250B8766927196206A2','Mines','icons/Suru/Suru/48x48/apps/gnome-mines.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/gnome-mines.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://player.zone.msn.com/?gamePath=msmahjong&gameInfo=eyJleHRlcm5hbElkIjoibXNtYWhqb25nIiwicGF0aCI6Imh0dHBzOi8vY2RuLnpvbmUubXNuLmNvbS9hc3NldHMvZ2FtZXMvbWljcm9zb2Z0bWFoam9uZy8yMDIwLzIwMjAxMTAyVDExNDhfMS4wLjEwX21zbi9nYW1lLmh0bWwiLCJwYXVzZWR1cmluZ2FkIjpmYWxzZSwiZ2FtZVR5cGUiOiJmaXJzdFBhcnR5IiwiZ2FtZVZlcnNpb24iOiIxLjAuMTAiLCJnYW1lRGlzcGxheU5hbWUiOiJNaWNyb3NvZnQgTWFoam9uZyIsImhvc3RpbmdFbnZpcm9ubWVudCI6InpvbmUifQ==&mcgId=','Mahjongg','icons/Suru/Suru/48x48/apps/gnome-mahjongg.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/gnome-mahjongg.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://player.zone.msn.com/?gamePath=msklondike&gameInfo=eyJleHRlcm5hbElkIjoibXNrbG9uZGlrZSIsInBhdGgiOiJodHRwczovL2Nkbi56b25lLm1zbi5jb20vYXNzZXRzL2dhbWVzL21pY3Jvc29mdHNvbGl0YWlyZWNvbGxlY3Rpb24vMjAyMS8yMDIxMDEyOVQxMTIwNDhfMS44LjhfcmVsZWFzZV83ZTFjY2U5X21zbi9zb2xpdGFpcmUvaW5kZXguaHRtbD9tb2RlPUtsb25kaWtlIiwicGF1c2VkdXJpbmdhZCI6ZmFsc2UsImdhbWVUeXBlIjoiZmlyc3RQYXJ0eSIsImdhbWVWZXJzaW9uIjoiMS44LjgiLCJnYW1lRGlzcGxheU5hbWUiOiJNaWNyb3NvZnQgU29saXRhaXJlIiwiaG9zdGluZ0Vudmlyb25tZW50Ijoiem9uZSJ9&mcgId=','AisleRiot Solitare','icons/Suru/Suru/48x48/apps/gnome-aisleriot.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/gnome-aisleriot.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://player.zone.msn.com/?gamePath=sudoku&gameInfo=eyJleHRlcm5hbElkIjoic3Vkb2t1IiwicGF0aCI6Imh0dHBzOi8vY2RuLnpvbmUubXNuLmNvbS9hc3NldHMvZ2FtZXMvbWljcm9zb2Z0c3Vkb2t1LzIwMjAwODIxVDE4NTgyNF8xLjMuMzNfbWlsZXN0b25lc18yMDIwX21pbGVzdG9uZV8yMDIwXzAxM19zcHJpbnRfMDAzX2QyNTcwYmNfbXNuL2RlZmF1bHQuaHRtbCIsInBhdXNlZHVyaW5nYWQiOmZhbHNlLCJnYW1lVHlwZSI6ImZpcnN0UGFydHkiLCJnYW1lVmVyc2lvbiI6IjEuMC4xMCIsImdhbWVEaXNwbGF5TmFtZSI6Ik1pY3Jvc29mdCBTdWRva3UiLCJob3N0aW5nRW52aXJvbm1lbnQiOiJ6b25lIn0=&mcgId=','Sudoku','icons/Suru/Suru/48x48/apps/sudoku-app.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/sudoku-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/clock/index.html','Clock','icons/Suru/Suru/48x48/apps/clock-app.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/clock-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'https://www.merriam-webster.com/','Dictionary','icons/Suru/Suru/48x48/apps/accessories-dictionary.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/accessories-dictionary.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/to-do list/index.html','To Do','icons/Suru/Suru/48x48/apps/to-do-app.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/to-do-app.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/quadrapassel/index.html','Quadrapassel','icons/Suru/Suru/48x48/apps/quadrapassel.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/quadrapassel.png"/></div>
+                <div class="app-menu-app"><img class="app-menu-app-image" onclick="window_create(createRandomWindowID(),'apps/notes/index.html','Notes','icons/Suru/Suru/48x48/apps/notes-app.png');" draggable="false" src="icons/Suru/Suru/256x256/apps/notes-app.png"/></div>
+            </div>
+        </div>
+        <div class="activities" style="visibility: hidden;">
+            <div class="menu-searchbox"><img src="icons/Suru/Suru/scalable/actions/search-symbolic.svg" draggable="false" /><input type="text" placeholder="Type to search" onfocus="this.parentNode.style.border='2px #db7959 solid'; this.parentNode.style.transform='translate(-1px,-1px)';"  onfocusout="this.parentNode.style.border=''; this.parentNode.style.transform='';this.value='';"/></div>
+            <img onclick="showHideActivities();" class="activities-wallpaper" />
+        </div>
+        <div class="context-menu-container" onclick="showHideContextMenu();" hidden>
+            <iframe class="context-menu" src="contextmenu.html"></iframe>
+        </div>
+        <div class="brightness" id="brightness"></div>
+    </body>
+</html>
